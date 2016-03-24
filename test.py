@@ -22,8 +22,12 @@ GPIO.setup(GPIO_OUT, GPIO.OUT)
 
 
 b = True
+i = 0
 while True:
-	if b:
+	inputStr = raw_input('Please enter your input:')
+	if inputStr == 'open the light':
+	#if b:
+	#if i % 3 != 0:
 		print("Light Power ON")
 		GPIO.output(GPIO_OUT, True)
 		b = False
@@ -31,6 +35,7 @@ while True:
 		print("Light Power OFF")
 		GPIO.output(GPIO_OUT, False)
 		b = True
+	i = i + 1
 	time.sleep(1.0)
 # Reset GPIO settings
 GPIO.cleanup()
