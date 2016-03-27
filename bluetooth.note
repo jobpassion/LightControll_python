@@ -1,0 +1,30 @@
+pactl list sources short
+pactl list sinks short
+service bluetooth  restart
+vim /etc/bluetooth/main.conf
+  Enable=Source,Sink,Media
+  Class = 0x20041C
+  
+power off
+power on
+agent off
+agent on
+untrust 6C:40:08:9F:51:85
+trust 6C:40:08:9F:51:85
+connect 6C:40:08:9F:51:85
+
+pulseaudio --system
+pulseaudio -D
+
+pactl load-module module-bluetooth-discover
+pactl load-module module-loopback source=bluez_source.6C_40_08_9F_51_85 sink=alsa_output.0.analog-stereo
+
+
+amixer cset numid=3 1
+amixer set Master 100%
+pacmd set-sink-volume 0 65537
+(https://www.raspberrypi.org/forums/viewtopic.php?t=68779)
+
+
+
+
