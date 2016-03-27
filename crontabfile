@@ -1,0 +1,1 @@
+* * * * * /root/checkForBluetoothDevice.sh  >> /root/pulseAudioBluetooth.cron.log 2>&1
