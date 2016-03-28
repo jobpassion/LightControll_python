@@ -16,16 +16,22 @@ print "Light Control"
 # Set pins as output and input
 #GPIO.setup(GPIO_IN,  GPIO.IN)
 GPIO.setup(GPIO_OUT, GPIO.OUT)
+GPIO.setup(3, GPIO.OUT)
 
 
 b = True
 i = 0
 def switch(isOpen):
     #self.b = isOpen
-    GPIO.output(GPIO_OUT, isOpen)
+    GPIO.output(GPIO_OUT, not(isOpen))
     switch.status = isOpen
+switch.high = False
+switch.status = False
+def high(isHigh):
+    GPIO.output(3, not(isHigh))
+    switch.high = isHigh
 def status():
-    return switch.status
+    return {"status":switch.status, "high":switch.high}
 def apply():
     print("Light Power ON" + b)
     if b:

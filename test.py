@@ -19,23 +19,30 @@ print "Light Control"
 # Set pins as output and input
 #GPIO.setup(GPIO_IN,  GPIO.IN)
 GPIO.setup(GPIO_OUT, GPIO.OUT)
+GPIO.setup(3, GPIO.OUT)
 
 
 b = True
 i = 0
 while True:
-	inputStr = raw_input('Please enter your input:')
-	if inputStr == 'open the light':
-	#if b:
-	#if i % 3 != 0:
-		print("Light Power ON")
-		GPIO.output(GPIO_OUT, True)
-		b = False
-	else:
-		print("Light Power OFF")
-		GPIO.output(GPIO_OUT, False)
-		b = True
-	i = i + 1
-	time.sleep(1.0)
+    inputStr = raw_input('Please enter your input:')
+    if inputStr == 'open':
+    #if b:
+    #if i % 3 != 0:
+        print("Light Power ON")
+        GPIO.output(GPIO_OUT, False)
+        b = False
+    elif inputStr == 'high':
+        print("Light Power High")
+        GPIO.output(3, False)
+    elif inputStr == 'low':
+        print("Light Power Low")
+        GPIO.output(3, True)
+    elif inputStr == 'close':
+        print("Light Power OFF")
+        GPIO.output(GPIO_OUT, True)
+        b = True
+    i = i + 1
+    time.sleep(1.0)
 # Reset GPIO settings
 GPIO.cleanup()

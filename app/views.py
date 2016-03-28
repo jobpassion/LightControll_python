@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -9,10 +10,14 @@ from . import raspberry
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
 def status(request):
-    return HttpResponse(raspberry.status())
+    return JsonResponse(raspberry.status())
 def switch(request, b):
     if b == 'open':
         raspberry.switch(True)
-    else:
+    elif b == 'high':
+        raspberry.high(True)
+    elif b == 'low':
+        raspberry.high(False)
+    elif b == 'close':
         raspberry.switch(False)
-    return HttpResponse(raspberry.status())
+    return JsonResponse(raspberry.status())
