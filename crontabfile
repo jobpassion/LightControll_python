@@ -1,1 +1,4 @@
-* * * * * /root/checkForBluetoothDevice.sh  >> /root/pulseAudioBluetooth.cron.log 2>&1
+#* * * * * /root/checkForBluetoothDevice.sh  >> /root/pulseAudioBluetooth.cron.log 2>&1
+0 17 * * 1-5 wget http://localhost:8000/app/switch/high
+0 20 * * * wget http://localhost:8000/app/switch/low
+0 1 * * 1-5 wget http://localhost:8000/app/switch/high
